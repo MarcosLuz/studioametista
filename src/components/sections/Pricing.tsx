@@ -120,7 +120,7 @@ export default function Pricing() {
 
               <ShineBorder
                 className="relative overflow-hidden bg-white rounded-2xl"
-                color={plan.popular ? ["#8B5CF6", "#EC4899", "#8B5CF6"] : ["#E5E7EB", "#9CA3AF"]}
+                shineColor={plan.popular ? ["#8B5CF6", "#EC4899", "#8B5CF6"] : ["#E5E7EB", "#9CA3AF"]}
                 borderWidth={plan.popular ? 2 : 1}
               >
                 <div className="p-8">
