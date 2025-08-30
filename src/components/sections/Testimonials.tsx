@@ -183,7 +183,10 @@ export default function Testimonials() {
         >
           <AvatarCircles 
             numPeople={500}
-            avatarUrls={testimonials.map(t => t.avatar)}
+            avatarUrls={testimonials.map(t => ({
+              imageUrl: t.avatar,
+              profileUrl: '#'
+            }))}
           />
         </motion.div>
 
