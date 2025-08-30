@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste CSS - Estúdio Ametista</title>
+    <style>
+        @import 'tailwindcss/base';
+        @import 'tailwindcss/components';
+        @import 'tailwindcss/utilities';
+        
+        :root {
+            --background: 255 255 255;
+            --foreground: 17 24 39;
+            --border: 229 231 235;
+            --input: 229 231 235;
+            --ring: 139 92 246;
+            --primary: 139 92 246;
+            --primary-foreground: 255 255 255;
+            --radius: 0.5rem;
+        }
+        
+        /* Fallback styles */
+        .bg-purple-600 { background-color: #8b5cf6; }
+        .text-white { color: white; }
+        .text-purple-600 { color: #8b5cf6; }
+        .text-gray-600 { color: #4b5563; }
+        .p-6 { padding: 1.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .rounded-lg { border-radius: 0.5rem; }
+        .grid { display: grid; }
+        .gap-6 { gap: 1.5rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+        .min-h-screen { min-height: 100vh; }
+        .text-4xl { font-size: 2.25rem; }
+        .font-bold { font-weight: 700; }
+        .bg-purple-100 { background-color: #f3e8ff; }
+        .bg-pink-100 { background-color: #fdf2f8; }
+        .bg-indigo-100 { background-color: #e0e7ff; }
+        
+        @media (min-width: 768px) {
+            .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+    <main class="min-h-screen bg-white">
+        <div class="container mx-auto px-4 py-8">
+            <h1 class="text-4xl font-bold text-purple-600 mb-4">
+                Estúdio Ametista - Teste CSS
+            </h1>
+            <p class="text-lg text-gray-600 mb-8">
+                Pilates • Yoga • Bem-estar • Teste de Estilo
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-purple-100 p-6 rounded-lg">
+                    <h2 class="text-xl font-semibold text-purple-800 mb-2">Mat Pilates</h2>
+                    <p class="text-gray-700">Fortalecimento e flexibilidade com CSS funcionando!</p>
+                </div>
+                
+                <div class="bg-pink-100 p-6 rounded-lg">
+                    <h2 class="text-xl font-semibold text-pink-800 mb-2">Yoga</h2>
+                    <p class="text-gray-700">Equilíbrio mente e corpo</p>
+                </div>
+                
+                <div class="bg-indigo-100 p-6 rounded-lg">
+                    <h2 class="text-xl font-semibold text-indigo-800 mb-2">Aerial Pilates</h2>
+                    <p class="text-gray-700">Exercícios suspensos</p>
+                </div>
+            </div>
+            
+            <button class="mt-8 bg-purple-600 text-white px-6 py-3 rounded-lg">
+                CSS Funcionando! ✓
+            </button>
+        </div>
+    </main>
+</body>
+</html>

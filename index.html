@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estúdio Ametista - Pilates, Yoga e Bem-estar em Joinville</title>
+    <meta name="description" content="Transforme seu corpo e mente com Pilates, Yoga e Pilates Suspenso. Programas personalizados de exercícios de reabilitação e condicionamento físico em Joinville-SC.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        
+        /* Custom animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .animate-fade-in-left {
+            animation: fadeInLeft 0.8s ease-out;
+        }
+        
+        .animate-fade-in-right {
+            animation: fadeInRight 0.8s ease-out;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* Parallax effect */
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Gradient animations */
+        .gradient-animate {
+            background: linear-gradient(-45deg, #8b5cf6, #ec4899, #f59e0b, #10b981);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #8b5cf6;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7c3aed;
+        }
+        
+        /* Hero carousel */
+        .carousel-item {
+            display: none;
+        }
+        
+        .carousel-item.active {
+            display: block;
+        }
+        
+        /* Intersection Observer animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="font-inter text-gray-900 bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">A</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold font-poppins text-gray-900">Estúdio Ametista</h1>
+                        <p class="text-xs text-gray-600">Pilates • Yoga • Bem-estar</p>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="text-gray-700 hover:text-purple-600 transition-colors duration-200">Início</a>
+                    <a href="#sobre" class="text-gray-700 hover:text-purple-600 transition-colors duration-200">Sobre</a>
+                    <a href="#servicos" class="text-gray-700 hover:text-purple-600 transition-colors duration-200">Serviços</a>
+                    <a href="#espaco" class="text-gray-700 hover:text-purple-600 transition-colors duration-200">Espaço</a>
+                    <a href="#contato" class="text-gray-700 hover:text-purple-600 transition-colors duration-200">Contato</a>
+                </div>
+                
+                <button class="md:hidden" onclick="toggleMobileMenu()">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden bg-white border-t" id="mobile-menu" style="display: none;">
+            <div class="px-4 py-3 space-y-3">
+                <a href="#inicio" class="block text-gray-700 hover:text-purple-600">Início</a>
+                <a href="#sobre" class="block text-gray-700 hover:text-purple-600">Sobre</a>
+                <a href="#servicos" class="block text-gray-700 hover:text-purple-600">Serviços</a>
+                <a href="#espaco" class="block text-gray-700 hover:text-purple-600">Espaço</a>
+                <a href="#contato" class="block text-gray-700 hover:text-purple-600">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Carousel -->
+    <section id="inicio" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background carousel -->
+        <div class="absolute inset-0">
+            <div class="carousel-item active">
+                <div class="absolute inset-0 bg-gradient-to-r from-purple-600/80 to-pink-600/80"></div>
+                <img src="https://storage.builderall.com//franquias/2/6028966/editor-html/4459976.png" 
+                     alt="Estúdio Ametista" 
+                     class="w-full h-full object-cover">
+            </div>
+            <div class="carousel-item">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-600/80 to-teal-600/80"></div>
+                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2020&q=80" 
+                     alt="Yoga Practice" 
+                     class="w-full h-full object-cover">
+            </div>
+            <div class="carousel-item">
+                <div class="absolute inset-0 bg-gradient-to-r from-green-600/80 to-blue-600/80"></div>
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                     alt="Pilates Studio" 
+                     class="w-full h-full object-cover">
+            </div>
+        </div>
+        
+        <!-- Hero content -->
+        <div class="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
+            <h1 class="text-5xl md:text-7xl font-bold font-poppins mb-6 animate-fade-in-up">
+                Transforme seu <span class="gradient-animate bg-clip-text text-transparent">corpo e mente</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90 animate-fade-in-up" style="animation-delay: 0.2s;">
+                Programas personalizados de Pilates, Yoga e condicionamento físico
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.4s;">
+                <button onclick="scrollToSection('contato')" 
+                        class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-purple-50 transform hover:scale-105 transition-all duration-200 shadow-lg">
+                    Agende sua Aula Grátis
+                </button>
+                <button onclick="scrollToSection('servicos')" 
+                        class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-purple-600 transform hover:scale-105 transition-all duration-200">
+                    Nossos Serviços
+                </button>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="w-8 h-8 text-white opacity-70"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h2 class="text-4xl font-bold font-poppins text-gray-900 mb-6">
+                        Nossa Missão & Visão
+                    </h2>
+                    <div class="space-y-6">
+                        <div class="p-6 bg-white rounded-xl shadow-lg border-l-4 border-purple-500">
+                            <h3 class="text-xl font-semibold text-purple-600 mb-3">Missão</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                Criar e ministrar programas de exercícios de reabilitação e condicionamento físico de forma segura e eficiente.
+                            </p>
+                        </div>
+                        <div class="p-6 bg-white rounded-xl shadow-lg border-l-4 border-pink-500">
+                            <h3 class="text-xl font-semibold text-pink-600 mb-3">Visão</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                Ser uma empresa de referência na elaboração de exercícios físicos personalizados.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                             alt="Pilates Session" 
+                             class="rounded-2xl shadow-2xl animate-float">
+                        <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-pulse-slow">
+                            <i data-lucide="heart" class="w-12 h-12 text-white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold font-poppins text-gray-900 mb-6">
+                    Nossos Serviços
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Oferecemos uma variedade de modalidades para atender suas necessidades específicas
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Yoga -->
+                <div class="group fade-in bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200">
+                        <i data-lucide="activity" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold font-poppins text-gray-900 mb-4">Yoga</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Encontre o equilíbrio perfeito entre mente e corpo através de práticas ancestrais adaptadas para o mundo moderno.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li>• Hatha Yoga</li>
+                        <li>• Vinyasa Flow</li>
+                        <li>• Yoga Restaurativo</li>
+                    </ul>
+                </div>
+                
+                <!-- Mat Pilates -->
+                <div class="group fade-in bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200">
+                        <i data-lucide="user" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold font-poppins text-gray-900 mb-4">Mat Pilates</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Fortaleça seu core, melhore sua postura e desenvolva flexibilidade através de exercícios precisos no solo.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li>• Fortalecimento do Core</li>
+                        <li>• Correção Postural</li>
+                        <li>• Flexibilidade</li>
+                    </ul>
+                </div>
+                
+                <!-- Pilates com Aparelhos -->
+                <div class="group fade-in bg-gradient-to-br from-green-50 to-teal-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200">
+                        <i data-lucide="settings" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold font-poppins text-gray-900 mb-4">Pilates Aparelhos</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Exercícios com equipamentos especializados para um treino mais desafiador e eficiente.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li>• Reformer</li>
+                        <li>• Cadillac</li>
+                        <li>• Chair</li>
+                    </ul>
+                </div>
+                
+                <!-- Pilates Suspenso -->
+                <div class="group fade-in bg-gradient-to-br from-orange-50 to-red-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200">
+                        <i data-lucide="zap" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold font-poppins text-gray-900 mb-4">Pilates Suspenso</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Desafie a gravidade com exercícios suspensos que trabalham força, flexibilidade e coordenação.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li>• Exercícios Aéreos</li>
+                        <li>• Descompressão da Coluna</li>
+                        <li>• Fortalecimento Global</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Studio Space Section -->
+    <section id="espaco" class="py-20 bg-gradient-to-br from-purple-50 to-pink-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold font-poppins text-gray-900 mb-6">
+                    Nosso Espaço
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Um ambiente acolhedor e profissional para sua jornada de bem-estar
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Studio Features -->
+                <div class="space-y-8 fade-in">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="home" class="w-6 h-6 text-purple-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Sala de Yoga</h3>
+                            <p class="text-gray-600">Espaço amplo e sereno, ideal para a prática de yoga e meditação.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="dumbbell" class="w-6 h-6 text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Sala de Aparelhos</h3>
+                            <p class="text-gray-600">Equipada com aparelhos profissionais de Pilates para treinos personalizados.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="coffee" class="w-6 h-6 text-green-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Recepção Acolhedora</h3>
+                            <p class="text-gray-600">Um espaço confortável para relaxar antes e depois das aulas.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="car" class="w-6 h-6 text-orange-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Estacionamento Amplo</h3>
+                            <p class="text-gray-600">Área de estacionamento grande e segura para sua comodidade.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Studio Images -->
+                <div class="fade-in">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Yoga Studio" 
+                             class="rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Pilates Equipment" 
+                             class="rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Meditation Space" 
+                             class="rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        <img src="https://images.unsplash.com/photo-1506629905607-bb95bab27c9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Studio Reception" 
+                             class="rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold font-poppins text-gray-900 mb-6">
+                    Nossos Valores
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-float">
+                        <i data-lucide="award" class="w-10 h-10 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold font-poppins text-gray-900 mb-4">Qualidade Superior</h3>
+                    <p class="text-gray-600">Oferecemos serviços de excelência com os mais altos padrões de qualidade.</p>
+                </div>
+                
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-float">
+                        <i data-lucide="users" class="w-10 h-10 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold font-poppins text-gray-900 mb-4">Respeito Individual</h3>
+                    <p class="text-gray-600">Respeitamos as necessidades únicas de cada aluno em sua jornada pessoal.</p>
+                </div>
+                
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-float">
+                        <i data-lucide="target" class="w-10 h-10 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold font-poppins text-gray-900 mb-4">Atenção Personalizada</h3>
+                    <p class="text-gray-600">Cada programa é desenvolvido especificamente para suas necessidades e objetivos.</p>
+                </div>
+                
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-float">
+                        <i data-lucide="heart" class="w-10 h-10 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold font-poppins text-gray-900 mb-4">Dedicação Total</h3>
+                    <p class="text-gray-600">Comprometimento e dedicação em cada aula para seus melhores resultados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 gradient-animate">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <div class="fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold font-poppins text-white mb-6">
+                    Pronta para começar sua transformação?
+                </h2>
+                <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                    Experimente uma aula gratuita e descubra como podemos ajudar você a alcançar seus objetivos de bem-estar.
+                </p>
+                <button onclick="scrollToSection('contato')" 
+                        class="bg-white text-purple-600 px-12 py-4 rounded-full text-lg font-semibold hover:bg-gray-50 transform hover:scale-105 transition-all duration-300 shadow-2xl animate-pulse-slow">
+                    Agende sua Aula Experimental Grátis
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold font-poppins text-gray-900 mb-6">
+                    Entre em Contato
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Estamos aqui para ajudar você a começar sua jornada de bem-estar
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div class="space-y-8 fade-in">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="map-pin" class="w-6 h-6 text-purple-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Localização</h3>
+                            <p class="text-gray-600">Rua Alagoas, 137, Anita Garibaldi</p>
+                            <p class="text-gray-600">Joinville - SC, 89230-540</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="phone" class="w-6 h-6 text-green-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">WhatsApp</h3>
+                            <p class="text-gray-600">(47) 99744-0932</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="clock" class="w-6 h-6 text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Horários</h3>
+                            <p class="text-gray-600">Segunda a Sexta: 6h às 21h</p>
+                            <p class="text-gray-600">Sábado: 7h às 12h</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/ametistayoga" target="_blank" 
+                           class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transform hover:scale-110 transition-all duration-200">
+                            <i data-lucide="facebook" class="w-6 h-6"></i>
+                        </a>
+                        <a href="https://www.instagram.com/ametistayogajlle/" target="_blank" 
+                           class="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center text-white hover:bg-pink-700 transform hover:scale-110 transition-all duration-200">
+                            <i data-lucide="instagram" class="w-6 h-6"></i>
+                        </a>
+                        <a href="https://wa.me/5547997440932" target="_blank" 
+                           class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white hover:bg-green-700 transform hover:scale-110 transition-all duration-200">
+                            <i data-lucide="message-circle" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="bg-white p-8 rounded-2xl shadow-xl fade-in">
+                    <h3 class="text-2xl font-semibold font-poppins text-gray-900 mb-6">Envie uma mensagem</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Nome</label>
+                            <input type="text" 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">WhatsApp</label>
+                            <input type="tel" 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Modalidade de Interesse</label>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200">
+                                <option>Selecione uma modalidade</option>
+                                <option>Yoga</option>
+                                <option>Mat Pilates</option>
+                                <option>Pilates com Aparelhos</option>
+                                <option>Pilates Suspenso</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Mensagem</label>
+                            <textarea rows="4" 
+                                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"></textarea>
+                        </div>
+                        <button type="submit" 
+                                class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-200 shadow-lg">
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">A</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold font-poppins">Estúdio Ametista</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Transforme seu corpo e mente através do movimento. Programas personalizados de Pilates e Yoga.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Serviços</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Yoga</li>
+                        <li>Mat Pilates</li>
+                        <li>Pilates com Aparelhos</li>
+                        <li>Pilates Suspenso</li>
+                        <li>Meditação</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contato</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Rua Alagoas, 137</li>
+                        <li>Joinville - SC</li>
+                        <li>(47) 99744-0932</li>
+                        <li>Segunda a Sexta: 6h às 21h</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Estúdio Ametista. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-white/95', 'shadow-md');
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
+        });
+        
+        // Hero carousel
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        
+        // Auto-advance carousel
+        setInterval(nextSlide, 5000);
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Add stagger delay to grid items
+        document.querySelectorAll('[class*="grid"] .fade-in').forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.1}s`;
+        });
+        
+        // Form submission (placeholder)
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Obrigado pela sua mensagem! Entraremos em contato em breve.');
+        });
+    </script>
+</body>
+</html>
